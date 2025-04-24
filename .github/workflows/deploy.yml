@@ -28,6 +28,7 @@ jobs:
         source: "."
         target: "~/flask-app"
       
+      
 
     - name: SSH and deploy using Docker Compose
       uses: appleboy/ssh-action@v0.1.5
