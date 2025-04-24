@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Event Assistant</title>
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🎤 ISIMM Intern Explorer Assistant</h1>
+    <textarea id="query" placeholder="Ask me anything about the event..."></textarea>
+    <button onclick="sendQuery()">Ask</button>
+    <div id="response"></div>
+  </div>
+
+  <script>
+    async function sendQuery() {
+      const query = document.getElementById('query').value;
+      const responseBox = document.getElementById('response');
+      responseBox.innerText = "Loading...";
+      const res = await fetch('/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      });
+      const data = await res.json();
+      responseBox.innerText = data.data;
+    }
+  </script>
+</body>
+</html>

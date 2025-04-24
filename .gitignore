@@ -1,0 +1,44 @@
+# Python
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.pdb
+*.log
+*.swp
+*.swo
+
+# Flask
+instance/
+*.db
+*.sqlite
+*.log
+*.pot
+*.pyc
+
+# Virtual environment
+venv/
+env/
+.venv/
+.env/
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# Flask config files
+config.py
+
+# Secrets
+*.env
+.env
+
+# Dependency directories
+pip-log.txt
+pip-delete-this-directory.txt
+__pycache__/
