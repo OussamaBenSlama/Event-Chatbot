@@ -23,9 +23,11 @@ jobs:
       with:
         host: ${{ secrets.EC2_HOST }}
         username: ec2-user
+        key: ${{ secrets.EC2_SSH_KEY }}
         port: 22
         source: "."
         target: "~/flask-app"
+      
 
     - name: SSH and deploy using Docker Compose
       uses: appleboy/ssh-action@v0.1.5
