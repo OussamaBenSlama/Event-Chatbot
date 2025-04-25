@@ -5,11 +5,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY info.md .
-COPY embedding.py .
+COPY app/ .
 RUN python embedding.py
 
-COPY app/ .
 
 ENV FLASK_APP=app/app.py
 ENV FLASK_RUN_HOST=0.0.0.0
