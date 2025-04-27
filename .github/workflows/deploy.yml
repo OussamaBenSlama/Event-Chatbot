@@ -33,7 +33,8 @@ jobs:
         chmod 600 private_key.pem
         
         ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-          git pull https://github.com/OussamaBenSlama/Event-Chatbot.git
+        cd ../../Event-Chatbot
+        git pull https://github.com/OussamaBenSlama/Event-Chatbot.git
 
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
