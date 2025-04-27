@@ -27,19 +27,21 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/chatbot-flask:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/chatbot-flask:latest
 
-    - name: Deploy to EC2
-      run: |
-        echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > private_key.pem
-        chmod 600 private_key.pem
+    # Uncomment the following steps if you want to deploy to an EC2 instance using SSH
+    
+    # - name: Deploy to EC2
+    #   run: |
+    #     echo "${{ secrets.EC2_SSH_PRIVATE_KEY }}" > private_key.pem
+    #     chmod 600 private_key.pem
         
-        ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-        cd ../../Event-Chatbot
-        git pull https://github.com/OussamaBenSlama/Event-Chatbot.git
+    #     ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
+    #     cd ../../Event-Chatbot
+    #     git pull https://github.com/OussamaBenSlama/Event-Chatbot.git
 
-          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
+    #       docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
-          docker pull ${{ secrets.DOCKER_USERNAME }}/chatbot-flask:latest
+    #       docker pull ${{ secrets.DOCKER_USERNAME }}/chatbot-flask:latest
 
-          docker-compose  down
-          docker-compose up -d
-        EOF
+    #       docker-compose  down
+    #       docker-compose up -d
+    #     EOF
