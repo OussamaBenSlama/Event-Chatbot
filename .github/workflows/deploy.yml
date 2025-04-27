@@ -33,13 +33,12 @@ jobs:
         chmod 600 private_key.pem
         
         ssh -i private_key.pem -o StrictHostKeyChecking=no ubuntu@${{ secrets.EC2_HOST }} << 'EOF'
-          git pull https://x-access-token:${{ secrets.GH_TOKEN }}@github.com/OussamaBenSlama/Event-Chatbo.git main
+          git pull https://github.com/OussamaBenSlama/Event-Chatbot.git
 
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_TOKEN }}
 
           docker pull ${{ secrets.DOCKER_USERNAME }}/chatbot-flask:latest
 
-          # Stop and start the Docker containers using Docker Compose
-          docker compose -f docker-compose.yml down
-          docker compose -f docker-compose.yml up -d
+          docker-compose  down
+          docker-compose up -d
         EOF

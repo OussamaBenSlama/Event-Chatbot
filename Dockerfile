@@ -9,11 +9,11 @@ COPY app/ .
 RUN python embedding.py
 
 
-ENV FLASK_APP=app/app.py
+ENV FLASK_APP=app.py
 ENV FLASK_RUN_HOST=0.0.0.0
 ENV FLASK_ENV=production
 
 EXPOSE 5000
 
-CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app.app:app"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:app"]
 
